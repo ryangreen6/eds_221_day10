@@ -29,13 +29,16 @@ ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g, color=species)) +
 
 ```{r}
 library(dograt)
+library(bigwave)
 ```
 
 
 ```{r}
 ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g, color=species)) +
   geom_point() +
-  theme_eighties()
+  theme_colorful() +
+  theme(panel.background = element_rect(color="pink"))
+  
 ```
 
 

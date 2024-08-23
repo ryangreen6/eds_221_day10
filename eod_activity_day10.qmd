@@ -1,0 +1,88 @@
+---
+title: "madison_lake"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(here)
+
+meteorological_data <- read_csv(here("docs", "ntl20_v6.csv"), na = "-999")
+ice_cover_duration <- read_csv(here("docs", "ntl33_v7.csv"), na = "-999")
+```
+
+```{r}
+lake_ice <- ice_cover_duration %>%
+  group_by(lakeid) %>%
+  summarise(mean_duration = mean(ice_duration, na.rm=TRUE))
+
+
+ggplot(data=ice_cover_duration, aes(x=lakeid, y=ice_duration)) +
+  geom_jitter(aes(color=lakeid)) +
+  geom_boxplot(alpha=0.3)
+  
+```
+
+```{r}
+mean_ice_cover <- ice_cover_duration %>%
+  group_by(year4) %>%
+  summarise(mean_duration = mean(ice_duration, na.rm=TRUE))
+
+ggplot(data=mean_ice_cover, aes(x=year4, y=mean_duration)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+mean_air_temp <- meteorological_data %>%
+  filter(month == c(1, 2, 12)) %>%
+  group_by(year4) %>%
+  summarise(mean_temp = mean(ave_air_temp_adjusted))
+
+ggplot(data=mean_air_temp, aes(x=year4, y=mean_temp)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+temp_v_duration <- full_join(mean_air_temp, mean_ice_cover)
+
+ggplot(data=temp_v_duration, aes(x=mean_temp, y=mean_duration)) +
+  geom_point() +
+  geom_smooth()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
