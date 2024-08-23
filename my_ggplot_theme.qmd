@@ -16,10 +16,10 @@ library(palmerpenguins)
 1. Make a ggplot theme
 
 ```{r}
-ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g)) +
+ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g, color=species)) +
   geom_point() +
   labs(title="Penuguins!") +
-  theme(title=element_text(size=16, color="purple"),
+  theme(title=element_text(size=16, color="red"),
         plot.background = element_rect(fill="black"),
         panel.background = element_rect(fill="gray"),
         axis.text = element_text(color="green"),
@@ -27,8 +27,16 @@ ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g)) +
         panel.grid.minor = element_line(color="yellow"))
 ```
 
+```{r}
+library(dograt)
+```
 
 
+```{r}
+ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g, color=species)) +
+  geom_point() +
+  theme_eighties()
+```
 
 
 
