@@ -1,0 +1,59 @@
+---
+title: "my_ggplot_theme"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+Updating our R packages, {kable} tables, and a first git collaboration
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+1. Make a ggplot theme
+
+```{r}
+ggplot(data=penguins, aes(x=flipper_length_mm, y=body_mass_g)) +
+  geom_point() +
+  labs(title="Penuguins!") +
+  theme(title=element_text(size=16, color="purple"),
+        plot.background = element_rect(fill="black"),
+        panel.background = element_rect(fill="gray"),
+        axis.text = element_text(color="green"),
+        panel.grid.major = element_line(color="red"),
+        panel.grid.minor = element_line(color="yellow"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
